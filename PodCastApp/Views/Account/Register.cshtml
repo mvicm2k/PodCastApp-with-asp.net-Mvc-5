@@ -1,0 +1,48 @@
+﻿@model PodCastApp.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="row">
+    <div class="col-md-3"></div>
+ <div class="col-md-6">
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <hr/>
+    <h4 class="text-warning">Create A New Account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+       <label class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2"></label>
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "Confirm Password" })
+        </div>
+    </div>
+     
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-block btn-success" value="Register" />
+        </div>
+    </div>
+}
+     </div>
+    <div class="col-md-3"></div>
+    </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

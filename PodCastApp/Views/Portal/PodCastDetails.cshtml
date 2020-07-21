@@ -1,0 +1,64 @@
+﻿@model PodCastApp.Models.PodCast
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+
+
+    <p>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.file)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tag)
+                    </th>
+                    <th>
+                        <label>Date Uploaded</label>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.description)
+                    </td>
+                    <td>
+                        <audio controls loop>
+                            <source src="~/Content/UploadedFiles/" type="audio/mp3" />
+                        </audio>
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.tag)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dateUploaded)
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+    </p>
+
+
+

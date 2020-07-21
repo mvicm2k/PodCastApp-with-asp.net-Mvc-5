@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PodCastApp.Models.PodCast>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+
+<h2>Admin</h2>
+
+<p>
+    @Html.ActionLink("Add PodCast", "CreatePodCast",null, new { @class="btn btn-primary"} )
+</p>
+<table class="table" id="podcasts">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.file)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tag)
+        </th>
+        <th>
+            <label>Date Uploaded</label>
+        </th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                <audio controls loop>
+                    <source src="@Url.Content(@item.file)" type="audio/mp3" />
+                </audio>
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tag)
+            </td>
+            <td>
+                @item.dateUploaded.ToLongDateString()
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditPodCast", new { id = item.Id }) |
+                @Html.ActionLink("Details", "PodCastDetails", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "DeletePodCast", new { id = item.Id })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#podcasts").DataTable();
+
+
+
+        });
+    </script>
+}

@@ -1,0 +1,60 @@
+﻿@model PodCastApp.Models.PodCast
+
+@{
+    ViewBag.Title = "DeletePodCast";
+    Layout = "~/Views/Shared/_admin.cshtml";
+}
+
+ 
+<h3>Are you sure you want to delete this File?</h3>
+<div>
+    <hr/>
+    <h4> @Html.DisplayFor(model => model.title) </h4>
+    <hr />
+    <table class="table">
+        <tr>
+            <th><b>Title</b></th>
+            <th><b>Description</b></th>
+            <th><b>File</b></th>
+            <th><b>Tag</b></th>
+            <th><b>Date Uploaded</b></th>
+
+            
+        </tr>
+
+
+        <tr>
+
+            <td>
+                @Html.DisplayFor(model => model.title)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.description)
+            </td>
+            <td>
+                <audio controls loop>
+                    <source src="@Url.Content(@Model.file)" type="audio/mp3" />
+                </audio>
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.tag)
+            </td>
+            <td>
+                @Model.dateUploaded.ToLongDateString()
+            </td>
+
+        </tr>
+         
+        
+
+    </table>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

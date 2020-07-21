@@ -1,0 +1,16 @@
+﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Portal"))
+{
+    <div class="form-group">
+        <labe>Name</labe>
+        @Html.TextBoxFor(a => a.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Name)
+    </div>
+    <input type="submit" class="btn btn-success" value="Save" />
+}

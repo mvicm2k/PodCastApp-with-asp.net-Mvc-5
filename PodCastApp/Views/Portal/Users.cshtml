@@ -1,0 +1,69 @@
+﻿@model IEnumerable<PodCastApp.Models.PodCast>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<hr />
+<h2 class="text-center text-capitalize">Podcast Users Portal</h2>
+<hr />
+
+<table class="table" id="users">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.file)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tag)
+        </th>
+        <th>
+            <label>Date Uploaded</label>
+        </th>
+         
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    <audio controls loop>
+                        <source src="@Url.Content(@item.file)" type="audio/mp3" />
+                    </audio>
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tag)
+                </td>
+                <td>
+                    @item.dateUploaded.ToLongDateString()
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#users").DataTable();
+
+
+          
+        });
+    </script>
+}
+
